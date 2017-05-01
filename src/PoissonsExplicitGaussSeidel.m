@@ -4,38 +4,44 @@
 clc
 clear all
 close all
-x=30;
-y=30;
+x=40;
+y=40;
 u=zeros(x,y);
-bx=150;
-ax=100;
-by=50;
-ay=30;
-% bx=pi;
-% ax=-pi;
-% by=pi;
-% ay=-pi;
+bx=pi;
+ax=-pi;
+by=pi;
+ay=-pi;
 xd=linspace(ax,bx,x);
 yd=linspace(ay,by,y);
-ni=200
-h=ax/ni;
+ni=1000
+h=ax/x;
 for k=1:ni
 for i=2:x-1
     for j=2:y-1
-        F(i,j)=0;
-        %F(i,j)=cos((pi/2)*(2*((xd(i)-ax)/(bx-ax))+1))*sin(pi*(yd(j)-ay)/(by-ay));
-        u(i,y)=by;
-        u(i,1)=((by-ay).^2)*cos(pi*ay/by)+((xd(i)-ax)/(bx-ax))*((ay*((by-ay).^2)-((by-ay).^2)*cos(pi*ay/by)));
+        %F(i,j)=0;
+        F(i,j)=cos((pi/2)*(2*((xd(i)-ax)/(bx-ax))+1))*sin(pi*(yd(j)-ay)/(by-ay));
+        u(i,j)=(1/4)*(u(i+1,j)+u(i-1,j)+u(i,j+1)+u(i,j-1)+(h.^2)*F(i,j));
+        
         u(1,j)=((by-yd(j)).^2)*cos(pi*yd(j)/by);
-        u(x,j)=yd(j)*((by-yd(j)).^2);
-        u(i,j)=(1/4)*(u(i+1,j)+u(i-1,j)+u(i,j+1)+u(i,j-1)-(h.^2)*F(i,j));
-
+        u(x,j)=yd(j)*(by-yd(j)).^2;
+        u(i,y)=yd(j);
+        u(i,1)=((by-ay).^2)*cos(pi*ay/by)+((xd(i)-ax)/(bx-ax))*((ay*((by-ay).^2)-((by-ay).^2)*cos(pi*ay/by)));
+       
     end
 end
 end
+%Inital BC
+u(1,1)=1
+u(1,y)=2
+u(x,1)=3
+u(x,y)=4
+
+
 [X,Y]=meshgrid(xd,yd);
-subplot(1,2,1)
+figure(1)
 surf(X,Y,u) %3D Plot
-subplot(1,2,2)
-contourf(u) %2D Plot
+xlabel('x')
+ylabel('y')
+%figure(2)
+%contourf(u) %2D Plot
 fprintf('Iterations: %f',ni)
