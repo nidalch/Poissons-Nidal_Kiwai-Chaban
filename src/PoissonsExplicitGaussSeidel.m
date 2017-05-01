@@ -4,30 +4,36 @@
 clc
 clear all
 close all
-x=40;
-y=40;
+x=30;
+y=30;
 u=zeros(x,y);
-bx=pi;
-ax=-pi;
-by=pi;
-ay=-pi;
-ni=2000
+bx=150;
+ax=100;
+by=50;
+ay=30;
+% bx=pi;
+% ax=-pi;
+% by=pi;
+% ay=-pi;
+xd=linspace(ax,bx,x);
+yd=linspace(ay,by,y);
+ni=200
 h=ax/ni;
 for k=1:ni
 for i=2:x-1
     for j=2:y-1
-%         F(i,j)=
-        u(i,j)=(1/4)*(u(i+1,j)+u(i-1,j)+u(i,j+1)+u(i,j-1));
-        u(:,x)=bx;
-        u(:,1)=ax;
-        u(1,:)=by;
-        u(y,:)=ay;
+        F(i,j)=0;
+        %F(i,j)=cos((pi/2)*(2*((xd(i)-ax)/(bx-ax))+1))*sin(pi*(yd(j)-ay)/(by-ay));
+        u(i,y)=by;
+        u(i,1)=((by-ay).^2)*cos(pi*ay/by)+((xd(i)-ax)/(bx-ax))*((ay*((by-ay).^2)-((by-ay).^2)*cos(pi*ay/by)));
+        u(1,j)=((by-yd(j)).^2)*cos(pi*yd(j)/by);
+        u(x,j)=yd(j)*((by-yd(j)).^2);
+        u(i,j)=(1/4)*(u(i+1,j)+u(i-1,j)+u(i,j+1)+u(i,j-1)-(h.^2)*F(i,j));
+
     end
 end
 end
-xp=1:x;
-yp=1:y;
-[X,Y]=meshgrid(xp,yp);
+[X,Y]=meshgrid(xd,yd);
 subplot(1,2,1)
 surf(X,Y,u) %3D Plot
 subplot(1,2,2)
