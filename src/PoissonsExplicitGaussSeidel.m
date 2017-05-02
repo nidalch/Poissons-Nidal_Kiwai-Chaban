@@ -15,7 +15,7 @@ xd=linspace(ax,bx,x);
 yd=linspace(ay,by,y);
 k=0;
 err=1;
-h=xd(2)-xd(1);
+h=ax/x;
 
 %Boundary conditions
  u(:,1)=((by-yd(:)).^2).*cos(pi.*yd(:)/by);
@@ -43,13 +43,15 @@ el=toc;
 
 
 [X,Y]=meshgrid(xd,yd);
-figure(1)
-surf(X,Y,u) %3D Plot
+
+figure(1)             %Surface 3D Plot
+surf(X,Y,u)
 xlabel('X domain')
 ylabel('Y domain')
 zlabel('U Position') 
 title(['Gauss-Seidel Solving of Poissons equation with '  num2str(n) ' x ' num2str(n)  ' mesh - Nidal Kiwai Chaban '])
 colorbar
+
 figure(2)
 contourf(u) %2D Plot
 xlabel('X domain (Nodes)')
