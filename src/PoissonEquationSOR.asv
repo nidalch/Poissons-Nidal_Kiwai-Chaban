@@ -4,8 +4,9 @@
 clc
 clear all
 close all
-x=100;
-y=100;
+n=input('Input number of nodes n for an n x n mesh: ')
+x=n;
+y=n;
 u=zeros(x,y);
 bx=pi;
 ax=-pi;
@@ -48,9 +49,16 @@ figure(1)
 surf(X,Y,u) %3D Plot
 xlabel('X domain')
 ylabel('Y domain')
-zlabel('Position')
-title('SOR Solving of Poissons eqn - Nidal Kiwai Chaban')
+title('Successive Over Relaxation Solving of Poissons equation - Nidal Kiwai Chaban')
 figure(2)
 contourf(u) %2D Plot
-fprintf('Iterations: %f',k)
-fprintf('Elapsed time: %f',el)
+xlabel('X domain (Nodes)')
+ylabel('Y domain (Nodes)')
+title('Successive Over Relaxation Solving of Poissons equation - Nidal Kiwai Chaban')
+%Reporting
+
+fprintf('Succesive-Over-Relaxation Method %d')
+fprintf('\nMesh size: %d',x)
+fprintf(' x %d',y)
+fprintf('\nIterations: %d',k)
+fprintf('\nElapsed time: %f',el);

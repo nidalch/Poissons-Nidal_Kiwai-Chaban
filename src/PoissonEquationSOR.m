@@ -4,8 +4,9 @@
 clc
 clear all
 close all
-x=50;
-y=50;
+n=input('Input number of nodes n for an n x n mesh: ');
+x=n;
+y=n;
 u=zeros(x,y);
 bx=pi;
 ax=-pi;
@@ -19,13 +20,13 @@ h=ax/x;
 B=1.5;
 
 %Boundary conditions
- u(:,1)=((by-yd(:)).^2).*cos(pi.*yd(:)/by);
- u(:,x)=yd(:).*(by-yd(:)).^2;
+u(:,1)=((by-yd(:)).^2).*cos(pi.*yd(:)/by);
+u(:,x)=yd(:).*(by-yd(:)).^2;
 u(1,:)=(((by-ay).^2).*cos(pi.*ay/by))+((xd(:)-ax)/(bx-ax)).*(((ay.*((by-ay).^2))-(((by-ay).^2.*cos(pi*ay/by)))));
- u(y,:)=by;
+u(y,:)=by;
         
 tic        
-while max(err(:))>=1e-6
+while max(max(err(:)))>=1e-6
     k=k+1;
     uold=u;
     for i=2:x-1
@@ -54,6 +55,8 @@ contourf(u) %2D Plot
 xlabel('X domain (Nodes)')
 ylabel('Y domain (Nodes)')
 title('Successive Over Relaxation Solving of Poissons equation - Nidal Kiwai Chaban')
+
+erb=max(max(err));
 %Reporting
 
 fprintf('Succesive-Over-Relaxation Method %d')
@@ -61,3 +64,4 @@ fprintf('\nMesh size: %d',x)
 fprintf(' x %d',y)
 fprintf('\nIterations: %d',k)
 fprintf('\nElapsed time: %f',el);
+fprintf('\nBiggest error value between u(i) and u(i-1): %.4ef',erb);

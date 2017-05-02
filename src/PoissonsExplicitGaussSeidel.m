@@ -4,8 +4,9 @@
 clc
 clear all
 close all
-x=50;
-y=50;
+n=input('Input number of nodes n for an n x n mesh: ');
+x=n;
+y=n;
 u=zeros(x,y);
 bx=pi;
 ax=-pi;
@@ -24,7 +25,7 @@ h=xd(2)-xd(1);
  u(y,:)=by;
 
 tic 
-while max(err(:))>=1e-6
+while max(max(err(:)))>=1e-6
     k=k+1;
     uold=u;
     for i=2:x-1
@@ -54,9 +55,12 @@ xlabel('X domain (Nodes)')
 ylabel('Y domain (Nodes)')
 title('Gauss-Seidel Solving of Poissons Equation - Nidal Kiwai Chaban')
 
+erb=max(max(err));
+
 %Reporting
 fprintf('Gauss-Seidel Method %d')
 fprintf('\nMesh size: %d',x)
 fprintf(' x %d',y)
 fprintf('\nIterations: %d',k)
 fprintf('\nElapsed time: %f',el);
+fprintf('\nBiggest error value between u(i) and u(i-1): %.4ef',erb);
