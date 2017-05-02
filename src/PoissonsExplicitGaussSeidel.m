@@ -47,12 +47,12 @@ figure(1)
 surf(X,Y,u) %3D Plot
 xlabel('X domain')
 ylabel('Y domain')
-title('Gauss-Seidel Solving of Poissons Equation - Nidal Kiwai Chaban')
+title(['Gauss-Seidel Solving of Poissons equation with '  num2str(n) ' x ' num2str(n)  ' mesh - Nidal Kiwai Chaban '])
 figure(2)
 contourf(u) %2D Plot
 xlabel('X domain (Nodes)')
 ylabel('Y domain (Nodes)')
-title('Gauss-Seidel Solving of Poissons Equation - Nidal Kiwai Chaban')
+title(['Gauss-Seidel Solving of Poissons equation with '  num2str(n) ' x ' num2str(n)  ' mesh - Nidal Kiwai Chaban '])
 
 erb=max(max(err));
 
