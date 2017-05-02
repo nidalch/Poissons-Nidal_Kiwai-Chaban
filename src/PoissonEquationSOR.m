@@ -26,7 +26,7 @@ u(1,:)=(((by-ay).^2).*cos(pi.*ay/by))+((xd(:)-ax)/(bx-ax)).*(((ay.*((by-ay).^2))
 u(y,:)=by;
         
 tic        
-while max(max(err(:)))>=1e-6
+while max(max(err(:)))>=1e-8
     k=k+1;
     uold=u;
     for i=2:x-1
@@ -38,7 +38,7 @@ while max(max(err(:)))>=1e-6
     end
     end
 unew=u;
-err=abs((uold-unew)./unew);
+err=abs((uold-unew))./(unew);
 end
 el=toc;
 %Inital BC

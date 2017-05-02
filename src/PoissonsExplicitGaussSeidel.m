@@ -3,7 +3,6 @@
 % Gauss-Seidel Method
 clc
 clear all
-close all
 n=input('Input number of nodes n for an n x n mesh: ');
 x=n;
 y=n;
