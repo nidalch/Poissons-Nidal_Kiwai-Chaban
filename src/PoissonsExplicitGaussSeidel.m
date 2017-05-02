@@ -30,6 +30,7 @@ h=ax/x;
         u(i,j)=(1/4)*(u(i+1,j)+u(i-1,j)+u(i,j+1)+u(i,j-1)+(h.^2)*F(i,j));
         
     end
+    u(i,y)=yd(i);
 end
 end
 %Inital BC
