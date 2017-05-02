@@ -48,10 +48,14 @@ figure(1)
 surf(X,Y,u) %3D Plot
 xlabel('X domain')
 ylabel('Y domain')
-zlabel('Position')
-title('SOR Solving of Poissons eqn - Nidal Kiwai Chaban')
+title('Successive Over Relaxation Solving of Poissons equation - Nidal Kiwai Chaban')
 figure(2)
 contourf(u) %2D Plot
+xlabel('X domain (Nodes)')
+ylabel('Y domain (Nodes)')
+title('Successive Over Relaxation Solving of Poissons equation - Nidal Kiwai Chaban')
+%Reporting
+
 fprintf('Succesive-Over-Relaxation Method %d')
 fprintf('\nMesh size: %d',x)
 fprintf(' x %d',y)

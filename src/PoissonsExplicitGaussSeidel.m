@@ -47,10 +47,14 @@ figure(1)
 surf(X,Y,u) %3D Plot
 xlabel('X domain')
 ylabel('Y domain')
-zlabel('Position')
-title('Gauss-Seidel Solving of Poissons eqn - Nidal Kiwai Chaban')
+title('Gauss-Seidel Solving of Poissons Equation - Nidal Kiwai Chaban')
 figure(2)
 contourf(u) %2D Plot
+xlabel('X domain (Nodes)')
+ylabel('Y domain (Nodes)')
+title('Gauss-Seidel Solving of Poissons Equation - Nidal Kiwai Chaban')
+
+%Reporting
 fprintf('Gauss-Seidel Method %d')
 fprintf('\nMesh size: %d',x)
 fprintf(' x %d',y)
