@@ -4,8 +4,8 @@
 clc
 clear all
 close all
-x=100;
-y=100;
+x=1000;
+y=1000;
 u=zeros(x,y);
 bx=pi;
 ax=-pi;
@@ -31,10 +31,10 @@ for i=2:x-1
 end
 end
 %Inital BC
- u(1,1)=((by-yd(1)).^2)*cos(pi*yd(1)/by)
+ u(1,1)=((by-yd(1)).^2)*cos(pi*yd(1)/by);
  u(x,1)=yd(1)*(by-yd(1)).^2;
  u(x,1)=yd(1)*(by-yd(1)).^2;
-
+%Keep messing with BCs and grid sizes-table to create
 
 [X,Y]=meshgrid(xd,yd);
 figure(1)
