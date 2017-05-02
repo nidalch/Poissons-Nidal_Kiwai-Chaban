@@ -21,10 +21,10 @@ B=1.5;
 %Boundary conditions
  u(:,1)=((by-yd(:)).^2).*cos(pi.*yd(:)/by);
  u(:,x)=yd(:).*(by-yd(:)).^2;
- u(1,:)=(((by-ay).^2).*cos(pi.*ay/by))+((xd(:)-ax)/(bx-ax)).*((ay.*((by-ay).^2)-((by-ay).^2).*cos(pi*ay/by)));
+u(1,:)=(((by-ay).^2).*cos(pi.*ay/by))+((xd(:)-ax)/(bx-ax)).*(((ay.*((by-ay).^2))-(((by-ay).^2.*cos(pi*ay/by)))));
  u(y,:)=by;
         
-        
+tic        
 while max(err(:))>=1e-6
     k=k+1;
     uold=u;
@@ -39,6 +39,7 @@ while max(err(:))>=1e-6
 unew=u;
 err=abs((uold-unew)./unew);
 end
+el=toc;
 %Inital BC
 
 
@@ -48,7 +49,11 @@ surf(X,Y,u) %3D Plot
 xlabel('X domain')
 ylabel('Y domain')
 zlabel('Position')
-title('SOR Solving of Poissons eqn')
+title('SOR Solving of Poissons eqn - Nidal Kiwai Chaban')
 figure(2)
 contourf(u) %2D Plot
-fprintf('Iterations: %f',k)
+fprintf('Succesive-Over-Relaxation Method %d')
+fprintf('\nMesh size: %d',x)
+fprintf(' x %d',y)
+fprintf('\nIterations: %d',k)
+fprintf('\nElapsed time: %f',el);
