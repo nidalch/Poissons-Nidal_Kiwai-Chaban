@@ -4,8 +4,8 @@
 clc
 clear all
 close all
-x=50;
-y=50;
+x=100;
+y=100;
 u=zeros(x,y);
 bx=pi;
 ax=-pi;
@@ -13,16 +13,19 @@ by=pi;
 ay=-pi;
 xd=linspace(ax,bx,x);
 yd=linspace(ay,by,y);
-ni=100
+k=0;
+err=1;
 h=ax/x;
 
+%Boundary conditions
  u(1,:)=((by-yd(:)).^2).*cos(pi.*yd(:)/by);
  u(x,:)=yd(:).*(by-yd(:)).^2;
- u(:,y)=yd(:);
  u(:,1)=(((by-ay).^2).*cos(pi.*ay/by))+((xd(:)-ax)/(bx-ax)).*((ay.*((by-ay).^2)-((by-ay).^2).*cos(pi*ay/by)));
 
         
-    for k=1:ni
+while max(err(:))>=1e-6
+    k=k+1;
+    uold=u;
     for i=2:x-1
     for j=2:y-1
         %F(i,j)=0;
@@ -31,7 +34,9 @@ h=ax/x;
         
     end
     u(i,y)=yd(i);
-end
+    end
+unew=u;
+err=abs((uold-unew)./unew);
 end
 %Inital BC
 
@@ -45,4 +50,4 @@ zlabel('Position')
 title('Gauss-Seidel Solving of Poissons eqn')
 figure(2)
 contourf(u) %2D Plot
-fprintf('Iterations: %f',ni)
+fprintf('Iterations: %f',k)
