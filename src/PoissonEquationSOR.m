@@ -4,8 +4,8 @@
 clc
 clear all
 close all
-x=100;
-y=100;
+x=50;
+y=50;
 u=zeros(x,y);
 bx=pi;
 ax=-pi;
@@ -19,10 +19,11 @@ h=ax/x;
 B=1.5;
 
 %Boundary conditions
- u(1,:)=((by-yd(:)).^2).*cos(pi.*yd(:)/by);
- u(x,:)=yd(:).*(by-yd(:)).^2;
- u(:,1)=(((by-ay).^2).*cos(pi.*ay/by))+((xd(:)-ax)/(bx-ax)).*((ay.*((by-ay).^2)-((by-ay).^2).*cos(pi*ay/by)));
-
+ u(:,1)=((by-yd(:)).^2).*cos(pi.*yd(:)/by);
+ u(:,x)=yd(:).*(by-yd(:)).^2;
+ u(1,:)=(((by-ay).^2).*cos(pi.*ay/by))+((xd(:)-ax)/(bx-ax)).*((ay.*((by-ay).^2)-((by-ay).^2).*cos(pi*ay/by)));
+ u(y,:)=by;
+        
         
 while max(err(:))>=1e-6
     k=k+1;
@@ -31,10 +32,9 @@ while max(err(:))>=1e-6
     for j=2:y-1
         %F(i,j)=0;
         F(i,j)=cos((pi/2)*(2*((xd(i)-ax)/(bx-ax))+1))*sin(pi*(yd(j)-ay)/(by-ay));
-        u(i,j)=(B.*(1/4)*(u(i+1,j)+u(i-1,j)+u(i,j+1)+u(i,j-1)+(h.^2)*F(i,j)))-(1-B)*u(i,j);
+        u(i,j)=(B.*(1/4)*(u(i+1,j)+u(i-1,j)+u(i,j+1)+u(i,j-1)+(h.^2)*F(i,j)))+(1-B)*u(i,j);
         
     end
-    u(i,y)=yd(i);
     end
 unew=u;
 err=abs((uold-unew)./unew);
