@@ -4,8 +4,8 @@
 clc
 clear all
 close all
-x=40;
-y=40;
+x=100;
+y=100;
 u=zeros(x,y);
 bx=pi;
 ax=-pi;
@@ -13,7 +13,7 @@ by=pi;
 ay=-pi;
 xd=linspace(ax,bx,x);
 yd=linspace(ay,by,y);
-ni=1000
+ni=100
 h=ax/x;
 for k=1:ni
 for i=2:x-1
@@ -34,14 +34,15 @@ end
  u(1,1)=((by-yd(1)).^2)*cos(pi*yd(1)/by)
  u(x,1)=yd(1)*(by-yd(1)).^2;
  u(x,1)=yd(1)*(by-yd(1)).^2;
- u(i,y)=yd(1);
 
 
 [X,Y]=meshgrid(xd,yd);
 figure(1)
 surf(X,Y,u) %3D Plot
-xlabel('x')
-ylabel('y')
-%figure(2)
-%contourf(u) %2D Plot
+xlabel('X domain')
+ylabel('Y domain')
+zlabel('Position')
+title('Gauss-Seidel Solving of Poissons eqn')
+figure(2)
+contourf(u) %2D Plot
 fprintf('Iterations: %f',ni)
