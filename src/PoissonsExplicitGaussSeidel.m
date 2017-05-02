@@ -31,10 +31,10 @@ for i=2:x-1
 end
 end
 %Inital BC
-u(1,1)=1
-u(1,y)=2
-u(x,1)=3
-u(x,y)=4
+ u(1,1)=((by-yd(1)).^2)*cos(pi*yd(1)/by)
+ u(x,1)=yd(1)*(by-yd(1)).^2;
+ u(x,1)=yd(1)*(by-yd(1)).^2;
+ u(i,y)=yd(1);
 
 
 [X,Y]=meshgrid(xd,yd);
