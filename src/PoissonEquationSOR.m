@@ -47,7 +47,9 @@ figure(1)
 surf(X,Y,u) %3D Plot
 xlabel('X domain')
 ylabel('Y domain')
+zlabel('U Position') 
 title(['Successive Over Relaxation Solving of Poissons equation with '  num2str(n) ' x ' num2str(n)  ' mesh - Nidal Kiwai Chaban '])
+colorbar
 figure(2)
 contourf(u) %2D Plot
 xlabel('X domain (Nodes)')
