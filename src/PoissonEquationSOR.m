@@ -4,7 +4,6 @@
 clc
 clear all
 n=input('Input number of nodes n for an n x n mesh: ');
-%p=input('Input number of iterations: ');
 x=n;
 y=n;
 u=zeros(x,y);
@@ -86,13 +85,13 @@ surf(X,Y,u,'EdgeColor','none')
 xlabel('X domain')
 ylabel('Y domain')
 zlabel('U Position') 
-title(['Successive Over Relaxation Solving of Poissons equation with '  num2str(n) ' x ' num2str(n)  ' mesh - Nidal Kiwai Chaban '])
-colorbar
+title(['Successive Over Relaxation Solving of Poissons equation with '  num2str(n) ' x ' num2str(n)  ' mesh - Nidal Kiwai Chaban '],'FontSize',8)
+
 figure(2)
-contourf(u) %2D Plot
-xlabel('X domain (Nodes)')
-ylabel('Y domain (Nodes)')
-title(['Successive Over Relaxation Solving of Poissons equation with '  num2str(n) ' x ' num2str(n)  ' mesh - Nidal Kiwai Chaban '])
+contourf(xd,yd,u) %2D Plot
+xlabel('X domain')
+ylabel('Y domain')
+title(['Successive Over Relaxation Solving of Poissons equation with '  num2str(n) ' x ' num2str(n)  ' mesh - Nidal Kiwai Chaban '],'FontSize',8)
 
 erb=max(max(err));
 l=mean(mean(u));
