@@ -95,6 +95,7 @@ ylabel('Y domain (Nodes)')
 title(['Successive Over Relaxation Solving of Poissons equation with '  num2str(n) ' x ' num2str(n)  ' mesh - Nidal Kiwai Chaban '])
 
 erb=max(max(err));
+l=mean(mean(u));
 
 %% Reporting
 
@@ -105,3 +106,4 @@ fprintf('\nOptimal Iterations: %d',k)
 %fprintf('\nFixed Iterations: %d',p)
 fprintf('\nElapsed time: %f',el);
 fprintf('\nBiggest error value between u(i) and u(i-1): %10.4e',erb);
+fprintf('\nMean of u: %10.4e',l);

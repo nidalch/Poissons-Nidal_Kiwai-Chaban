@@ -42,7 +42,7 @@ el=toc;
 %% Plotting
 [X,Y]=meshgrid(xd,yd);
 
-figure             %Surface 3D Plot
+figure(1)             %Surface 3D Plot
 surf(X,Y,u,'EdgeColor','none')
 xlabel('X domain')
 ylabel('Y domain')
@@ -50,13 +50,14 @@ zlabel('U Position')
 title(['Gauss-Seidel Solving of Poissons equation with '  num2str(n) ' x ' num2str(n)  ' mesh - Nidal Kiwai Chaban '])
 colorbar
 
-figure
+figure(2)
 contourf(u) %2D Plot
 xlabel('X domain (Nodes)')
 ylabel('Y domain (Nodes)')
 title(['Gauss-Seidel Solving of Poissons equation with '  num2str(n) ' x ' num2str(n)  ' mesh - Nidal Kiwai Chaban '])
 
 erb=max(max(err));
+l=mean(mean(u));
 
 %% Reporting
 
@@ -67,3 +68,4 @@ fprintf('\nOptimal Iterations: %d',k)
 %fprintf('\nFixed Iterations: %d',p)
 fprintf('\nElapsed time: %f',el);
 fprintf('\nBiggest error value between u(i) and u(i-1): %10.4e',erb);
+fprintf('\nMean of u: %10.4e',l);
