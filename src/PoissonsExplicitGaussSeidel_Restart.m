@@ -14,7 +14,7 @@ while max(err(:))>=1e-6     %Run for optimal iterations
     % If you want to test the restart script, use the function pause(1) to slow down the while loop.
     % This will slow down the while loop to 1 sec per iteration so that ctrl + C can used be to
     % "kill" the code to simulate a computer crash. From there, use the restart script to restart the loop.  
-     pause(.01)
+   %  pause(.01)
     if mod(k, freq) == 0 % If statement, checkpoints periodically (determined by the frequency)
         chkpt                    % chkpt script performs checkpointing (save) every *frequency* iterations
         fprintf(1, ['Checkpointing frequency is every %2d iterations.' ...
@@ -28,7 +28,7 @@ while max(err(:))>=1e-6     %Run for optimal iterations
             %F(i,j)=0;
 %             F(i,j)=cos((pi/2)*(2*((xd(i)-ax)/(bx-ax))+1))*sin(pi*(yd(j)-ay)/(by-ay));
             u(i,j)=(1/4)*(u(i+1,j)+u(i-1,j)+u(i,j+1)+u(i,j-1)+(h.^2)*F(i,j));
-        
+            u(x,j)=(1/4)*(u(i+1,j)+u(i-1,j)+u(i,j+1)+u(i,j+1)+(h.^2)*F(i,j)); %Neumann BC
         end
 
     end
@@ -43,7 +43,7 @@ el=toc;
 [X,Y]=meshgrid(xd,yd);
 
 figure             %Surface 3D Plot
-surf(X,Y,u)
+surf(X,Y,u,'EdgeColor','none')
 xlabel('X domain')
 ylabel('Y domain')
 zlabel('U Position') 
