@@ -1,9 +1,10 @@
 % Poisson's Equation on a rectangle
 % Nidal Kiwai Chaban
 % Gauss-Seidel Method
-%clc
+clc
 clear all
-n=input('\nInput number of nodes n for an n x n mesh: ');
+n=input('Input number of nodes n for an n x n mesh: ');
+p=input('Input number of iterations: ');
 x=n;
 y=n;
 u=zeros(x,y);
@@ -24,7 +25,8 @@ h=ax/x;
  u(y,:)=by;
 
 tic 
-while max(max(err(:)))>=1e-6
+%while max(max(err(:)))>=1e-6     %Run for optimal iterations
+for q=1:p                        %Run for fixed iterations
     k=k+1;
     uold=u;
     for i=2:x-1
@@ -61,9 +63,11 @@ title(['Gauss-Seidel Solving of Poissons equation with '  num2str(n) ' x ' num2s
 erb=max(max(err));
 
 %Reporting
+%
 fprintf('\nGauss-Seidel Method for Poissons Equation %d')
 fprintf('\nMesh size: %d',x)
 fprintf(' x %d',y)
-fprintf('\nIterations: %d',k)
+fprintf('\nOptimal Iterations: %d',k)
+fprintf('\nFixed Iterations: %d',p)
 fprintf('\nElapsed time: %f',el);
 fprintf('\nBiggest error value between u(i) and u(i-1): %10.4e',erb);

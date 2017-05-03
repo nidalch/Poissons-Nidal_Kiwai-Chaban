@@ -1,9 +1,10 @@
 % Poisson's Equation on a rectangle
 % Nidal Kiwai Chaban
 % SOR Method
-%clc
+clc
 clear all
-n=input('\nInput number of nodes n for an n x n mesh: ');
+n=input('Input number of nodes n for an n x n mesh: ');
+p=input('Input number of iterations: ');
 x=n;
 y=n;
 u=zeros(x,y);
@@ -25,8 +26,8 @@ u(1,:)=(((by-ay).^2).*cos(pi.*ay/by))+((xd(:)-ax)/(bx-ax)).*(((ay.*((by-ay).^2))
 u(y,:)=by;
         
 tic        
-while max(max(err(:)))>=1e-8
-    k=k+1;
+%while max(max(err(:)))>=1e-6     %Run for optimal iterations
+for q=1:p                        %Run for fixed iterations    k=k+1;
     uold=u;
     for i=2:x-1
     for j=2:y-1
@@ -57,10 +58,11 @@ title(['Successive Over Relaxation Solving of Poissons equation with '  num2str(
 
 erb=max(max(err));
 %Reporting
-
+%
 fprintf('\nSuccesive-Over-Relaxation Method for Poissons Equation %d')
 fprintf('\nMesh size: %d',x)
 fprintf(' x %d',y)
-fprintf('\nIterations: %d',k)
+fprintf('\nOptimal Iterations: %d',k)
+fprintf('\nFixed Iterations: %d',p)
 fprintf('\nElapsed time: %f',el);
 fprintf('\nBiggest error value between u(i) and u(i-1): %10.4e',erb);
