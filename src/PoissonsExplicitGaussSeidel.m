@@ -20,7 +20,7 @@ freq=10;
 err=1;
 h=(abs(ax)-abs(bx))/x;
 
-%% Dirichlet Boundary conditions
+%% Dirichlet Boundary conditions declared outside of loop in vectorized form to optimize code
  u(:,1)=((by-yd(:)).^2).*cos(pi.*yd(:)/by);
  u(:,x)=yd(:).*(by-yd(:)).^2;
  u(1,:)=(((by-ay).^2).*cos(pi.*ay/by))+((xd(:)-ax)/(bx-ax)).*((ay.*((by-ay).^2)-((by-ay).^2).*cos(pi*ay/by)));
