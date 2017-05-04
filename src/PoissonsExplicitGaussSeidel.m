@@ -25,8 +25,10 @@ h=(abs(ax)-abs(bx))/x;
  u(:,x)=yd(:).*(by-yd(:)).^2;
  u(1,:)=(((by-ay).^2).*cos(pi.*ay/by))+((xd(:)-ax)/(bx-ax)).*((ay.*((by-ay).^2)-((by-ay).^2).*cos(pi*ay/by)));
  %u(y,:)=by;
- F=cos((pi/2)*(2*((xd-ax)/(bx-ax))+1))'*sin(pi.*(yd-ay)/(by-ay));
-%F=zeros(x,y);
+ 
+ %Forcing Function
+   F=cos((pi/2)*(2*((xd-ax)/(bx-ax))+1))'*sin(pi.*(yd-ay)/(by-ay));
+%    F=zeros(x,y);
 %% Checkpointing
 % Sometimes files take a long time to run to completion. As a result, sometimes they crash due to a variety of reasons: power failure, walltime limit, scheduled shutdown, etc. 
 % Checkpoint/Restarting has long been a common technique to tackle this issue. Checkpointing/Restarting essentially means saving data to disk periodically so that, if need be, 
