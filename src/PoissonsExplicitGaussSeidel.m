@@ -20,11 +20,10 @@ freq=10;
 err=1;
 h=(abs(ax)-abs(bx))/x;
 
-%% Boundary conditions
+%% Dirichlet Boundary conditions
  u(:,1)=((by-yd(:)).^2).*cos(pi.*yd(:)/by);
  u(:,x)=yd(:).*(by-yd(:)).^2;
  u(1,:)=(((by-ay).^2).*cos(pi.*ay/by))+((xd(:)-ax)/(bx-ax)).*((ay.*((by-ay).^2)-((by-ay).^2).*cos(pi*ay/by)));
- %u(y,:)=by;
  
  %Forcing Function
    F=cos((pi/2)*(2*((xd-ax)/(bx-ax))+1))'*sin(pi.*(yd-ay)/(by-ay));
