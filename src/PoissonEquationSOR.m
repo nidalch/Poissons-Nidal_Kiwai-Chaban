@@ -74,7 +74,7 @@ while max(max(err(:)))>=1e-6     %Run for optimal iterations
     end
 unew=u;
 err=abs((uold-unew))./(unew);
-    fprintf(1, 'Completed iteration %d\n', k);
+     fprintf(1, 'Completed iteration %d\n', k);
 end
 el=toc;
 
