@@ -4,7 +4,7 @@
 clc
 clear all
 
-%% Define Initial Values
+%% Define Initial Values 
 n=input('Input number of nodes n for an n x n mesh: ');
 x=n;
 y=n;
