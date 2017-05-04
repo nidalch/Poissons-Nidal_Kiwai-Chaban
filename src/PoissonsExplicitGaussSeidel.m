@@ -18,7 +18,7 @@ yd=linspace(ay,by,y);
 k=0;
 freq=10;
 err=1;
-h=abs(ax)/x;
+h=(abs(ax)-abs(bx))/x;
 
 %% Boundary conditions
  u(:,1)=((by-yd(:)).^2).*cos(pi.*yd(:)/by);

@@ -16,7 +16,7 @@ yd=linspace(ay,by,y);
 k=0;
 freq=10;
 err=1;
-h=ax/x;
+h=(abs(ax)-abs(bx))/x;;
 B=1.5;
 
 %% Boundary conditions
